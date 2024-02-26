@@ -1,0 +1,85 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{dsfont}
+\usepackage[brazil]{babel}
+\usepackage{indentfirst}
+\DeclareMathOperator{\sen}{sen}
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\cossec}{cossec}
+\DeclareMathOperator{\senh}{senh}
+\DeclareMathOperator{\tgh}{tgh}
+\DeclareMathOperator{\cossech}{cossech}
+\newcommand{\limite}{\displaystyle\lim}
+\newcommand{\integral}{\displaystyle\int}
+\newcommand{\soma}{\displaystyle\sum}
+\newcommand{\arr}{\begin{array}}
+\newcommand{\farr}{\end{array}}
+\newcommand{\eq}{\begin{equation}}
+\newcommand{\feq}{\end{equation}}
+\newcommand{\eqn}{\begin{eqnarray*}}
+\newcommand{\feqn}{\end{eqnarray*}}
+\newcommand{\mat}{\begin{bmatrix}}
+\newcommand{\fmat}{\end{bmatrix}}
+\newcommand{\sys}{\begin{cases}}
+\newcommand{\fsys}{\end{cases}}
+\title{Diagrama de Cama Elástica}
+\author{Geovanni Fernandes Garcia \\ geovanni@usp.br \\ N°USP: 11298560}
+
+%\usepackage{xcolor}
+%\pagecolor[rgb]{0.15,0.15,0.15}
+%\color[rgb]{1,1,1}
+
+\begin{document}
+
+\maketitle
+O espaço-tempo de Schwarzschild em unidades naturais ($c = 1, G = 1$) possui a métrica:
+
+$$ds^2 = -\left(1-\dfrac{2M}{r}\right)dt^2 + \left(1-\dfrac{2M}{r}\right)^{-1} dr^2 + r^2(d\theta^2 + \sen^2\theta d\phi^2)$$
+
+Portanto, o tensor métrico de Schwarzschild é dado por:
+
+$$ g_{\mu\nu } =
+\mat -\left(1-\dfrac{2M}{r}\right) & 0 & 0 & 0\\
+0 & \left(1-\dfrac{2M}{r}\right)^{-1} & 0 & 0\\
+0 & 0 & r^2 & 0\\
+0 & 0 & 0 & r^2\sen^2\theta\\
+\fmat $$
+
+Primeiramente, pretendemos reduzir a dimensionalidade do nosso problema considerando o tempo $t$ constante e $\theta = \dfrac{\pi}{2}$, assim pode-se eliminar os termos $dt^2$ e $d\theta^2$ da métrica, nos deixando apenas com:
+
+$$ds^2 = \left(1-\dfrac{2M}{r}\right)^{-1} dr^2 + r^2\sen^2\theta d\phi^2$$
+$$ds^2 = \left(1-\dfrac{2M}{r}\right)^{-1} dr^2 + r^2\sen^2\left(\dfrac{\pi}{2}\right) d\phi^2$$
+$$ds^2 = \left(1-\dfrac{2M}{r}\right)^{-1} dr^2 + r^2 d\phi^2$$
+
+Vamos agora criar um "hiperespaço" através da métrica das coordenadas cilindricas $(R,\phi,z)$:
+
+$$ds_c^2 = dR^2 + R^2d\phi^2 + dz^2,~~z = z(R)$$
+
+Antes de encontrar uma expressão para $z = z(R)$, iremos aplicar uma transformação de coordenadas nesta métrica:
+
+$$ds_c^2 = dR^2 + R^2d\phi^2 + dz^2$$
+$$ds_c^2 = \left(\dfrac{dR}{dr}\right)^2dr^2 + R^2d\phi^2 + \left(\dfrac{dz}{dr}\right)^2dr^2$$
+$$ds_c^2 = \left[\left(\dfrac{dR}{dr}\right)^2 + \left(\dfrac{dz}{dr}\right)^2\right]dr^2 + R^2 d\phi^2$$
+
+Finalmente, resolveremos para $z = z(R)$ igualando o que foi obtido de ambas as métricas:
+
+$$ds_c^2 = ds^2$$
+$$\left[\left(\dfrac{dR}{dr}\right)^2 + \left(\dfrac{dz}{dr}\right)^2\right]dr^2 + R^2 d\phi^2 = \left(1-\dfrac{2M}{r}\right)^{-1} dr^2 + r^2 d\phi^2$$
+
+$$\sys \left(\dfrac{dR}{dr}\right)^2 + \left(\dfrac{dz}{dr}\right)^2 = \left(1-\dfrac{2M}{r}\right)^{-1}\\
+R^2 = r^2 \implies R = r
+\fsys$$
+
+$$\therefore\left(\dfrac{dR}{dr}\right)^2 + \left(\dfrac{dz}{dr}\right)^2 = \left(1-\dfrac{2M}{r}\right)^{-1} \implies 1 + \left(\dfrac{dz}{dr}\right)^2 = \left(1-\dfrac{2M}{r}\right)^{-1}$$
+
+$$\dfrac{dz}{dr} = \left[\left(1-\dfrac{2M}{r}\right)^{-1} - 1\right]^{\frac{1}{2}}$$
+
+$$dz = \left[\left(1-\dfrac{2M}{r}\right)^{-1} - 1\right]^{\frac{1}{2}}dr$$
+
+$$z(r) = 2\left[\left(1-\dfrac{2M}{r}\right)^{-1} - 1\right]^{\frac{1}{2}}(r-2M)$$
+
+\end{document}
