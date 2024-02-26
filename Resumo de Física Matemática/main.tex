@@ -1,0 +1,101 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[top=2cm, bottom=2cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[brazil]{babel}
+\usepackage{indentfirst}
+\DeclareMathOperator{\sen}{sen}
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\cossec}{cossec}
+\newcommand{\limite}{\displaystyle\lim}
+\newcommand{\integral}{\displaystyle\int}
+\newcommand{\soma}{\displaystyle\sum}
+\title{Resumo de Física Matemática}
+\author{Geovanni Fernandes Garcia \\ geovanni@usp.br}
+
+
+\begin{document}
+\maketitle
+\section{Física Matemática}
+\subsection{Série de Fourier}
+$$f(x) = \dfrac{a_0}{2} + \sum_{n=1}^{\infty} a_n\cos\left(\dfrac{n\pi x}{L}\right) + b_n\sen\left(\dfrac{n\pi x}{L}\right)$$
+$$f(x) = \sum_{-\infty}^{\infty} c_ne^{inx} \longleftrightarrow c_n = \dfrac{a_n-ib_n}{2}$$
+$$a_0 = \dfrac{1}{L}\integral_{-L}^L f(x)dx$$
+$$a_n = \dfrac{1}{L}\integral_{-L}^L f(x)\cos\left(\dfrac{n\pi x}{L}\right)dx$$
+$$b_n = \dfrac{1}{L}\integral_{-L}^L f(x)\sen\left(\dfrac{n\pi x}{L}\right)dx$$
+
+Se $f(x)$ é par, $b_n = 0$, se $f(x)$ é ímpar, $a_n = 0$.
+\subsubsection{Série de Fourier de Cossenos}
+$$a_n = \dfrac{2}{L}\integral_0^L f(x)\cos\left(\dfrac{n\pi x}{L}\right)dx$$
+$$g_c(x) = \dfrac{a_0}{2} + \sum_{n=1}^{\infty} a_n\cos\left(\dfrac{n\pi x}{L}\right)$$
+
+Esta será a extensão par de f(x).
+\subsubsection{Série de Fourier de Senos}
+$$b_n = \dfrac{2}{L}\integral_0^L f(x)\sen\left(\dfrac{n\pi x}{L}\right)dx$$
+$$g_s(x) = \sum_{n=1}^{\infty} b_n\sen\left(\dfrac{n\pi x}{L}\right)$$
+
+Esta será a extensão ímpar de f(x).
+\subsubsection{Relação de Parseval}
+$$\dfrac{1}{\pi}\integral_{-\pi}^{\pi} f^2(x)dx = \dfrac{a_0^2}{2} + \sum_{k=1}^{\infty} (a_k^2 + b_k^2)$$
+$$a_k = \dfrac{1}{\pi}\integral_{-\pi}^{\pi} f(x)\cos\left(nx\right)dx$$
+$$b_k = \dfrac{1}{\pi}\integral_{-\pi}^{\pi} f(x)\sen\left(nx\right)dx$$
+\subsection{Transformada de Fourier}
+$$f(x) = \dfrac{1}{2\pi}\integral_{-\infty}^{\infty} F(k)e^{ikx}dk$$
+$$F(k) = \integral_{-\infty}^{\infty} f(x)e^{-ikx}dx$$
+
+$F(k)$ é chamada de transformada de Fourier de $f(x)$ que, por sua vez, é chamada de transformada inversa de Fourier.
+
+Existe uma forma simétrica para elas:
+$$f(x) = \dfrac{1}{\sqrt{2\pi}}\integral_{-\infty}^{\infty} F(k)e^{ikx}dk$$
+$$F(k) = \dfrac{1}{\sqrt{2\pi}}\integral_{-\infty}^{\infty} f(x)e^{-ikx}dx$$
+\subsubsection{Paridade da transformada de Fourier}
+Se $f(x)$ é par:
+$$F(k) = \dfrac{1}{\sqrt{2\pi}}\integral_{-\infty}^{\infty} f(x)e^{-ikx}dx 
+= \dfrac{2}{\sqrt{2\pi}}\integral_{0}^{\infty} f(x) \cos(kx)dx$$
+
+Se $f(x)$ é ímpar:
+$$F(k) = \dfrac{1}{\sqrt{2\pi}}\integral_{-\infty}^{\infty} f(x)e^{-ikx}dx 
+= \dfrac{-2i}{\sqrt{2\pi}}\integral_{0}^{\infty} f(x) \sen(kx)dx$$
+\subsubsection{Convolução}
+$$f(x) = \integral_{-\infty}^{\infty} G(x-x')g(x')dx'$$
+
+Então:
+$$\tilde{f}(k) = \dfrac{1}{\sqrt{2\pi}}\integral_{-\infty}^{\infty} f(x)e^{-ikx}dx$$
+$$\tilde{G}(k) = \dfrac{1}{\sqrt{2\pi}}\integral_{-\infty}^{\infty} G(x)e^{-ikx}dx$$
+$$\tilde{g}(k) = \dfrac{1}{\sqrt{2\pi}}\integral_{-\infty}^{\infty} g(x)e^{-ikx}dx$$
+$$\tilde{f}(k) = \tilde{G}(k)\tilde{g}(k)\sqrt{2\pi}$$
+\subsubsection{Teorema de Parseval}
+$$\integral_{-\infty}^{\infty} |f(x)|^2dx = \integral_{-\infty}^{\infty} |F(k)|^2dk$$
+
+\subsection{Função de Green}
+$$y''(t)+P(t)y'(t)+Q(t)y(t)=0$$
+$$y(t)=C_1y_1(t)+C_2y_2(t)$$
+
+Função linearmente independente:
+$$C_1y_1(t)+C_2y_2(t)=0$$
+$$W[y_1(t)y_2(t)]=y_1(t)y'_2(t)-y'_1(t)y_2(t)=
+\begin{vmatrix}
+y_1 & y_2 \\
+y'_1 & y'_2
+\end{vmatrix}
+\neq 0 \;\textrm{se for L.I.}
+$$
+$$G(t,t') = \dfrac{1}{W[y_1(t)y_2(t)]} [y_2(t')y_1(t)\theta (t'-t) -y_1(t')y_2(t)\theta (t-t')]$$
+ $$G(t,t') =
+  \begin{cases}
+   y_2(t')y_1(t)\,,\textrm{ se }\,t < t'\\
+   y_1(t')y_2(t)\,,\textrm{ se }\,t > t'
+  \end{cases}
+ $$
+
+\subsection{Transformada de Laplace}
+$$F(s) = \mathcal{L} \{f(t)\} = \integral_{0}^{\infty} f(t)e^{-st}dt$$
+$$\mathcal{L}^{-1}\{F(s)\} = f(t)$$
+
+Transformada de Laplace de derivadas:
+$$\mathcal{L}\{\ddot{x}(t)\} = s^2F(s) - sx(0)-\dot{x}(0)$$
+$$\mathcal{L}\{\dot{x}(t)\} = sF(s) - x(0)$$
+
+\end{document}
